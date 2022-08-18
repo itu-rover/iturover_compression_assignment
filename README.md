@@ -1,4 +1,7 @@
+<div align="center">
+
 <img src="media/iturover.png" width="256" height="225" />
+</div>
 
 # ITU Rover Compression Assignment
 Size verdiğimiz **bz2_node** isimli node, bz2 (Burrows–Wheeler) algoritmasıyla sıkıştırılmış bir veriyi on altılı sayı sisteminde (hexadecimal) "/bz2_message" topic'i üzerinde yayınlamaktadır.
