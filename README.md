@@ -1,5 +1,22 @@
-Script bz2 (Burrows–Wheeler algorithm) algoritmasıyla belirli bir veriyi sıkıştırmakta ve bu sıkışmış yeni veriyi onaltılık sayı sisteminde "/bz2_message" topiği üzerinden yayınlamaktadır.
+<img src="media/iturover.png" width="256" height="225" />
 
-Yayınlanan topic'i dinlemeniz, ve verinin ilk halindeki en çok tekrar eden karakteri bulup bu karakterin ascii tablosunda denk geldiği sayıyı std_msgs Char ros mesaj türünde publishlemeniz beklenmektedir.
+# ITU Rover Compression Assignment
+Size verdiğimiz **bz2_node** isimli node, bz2 (Burrows–Wheeler) algoritmasıyla sıkıştırılmış bir veriyi on altılı sayı sisteminde (hexadecimal) "/bz2_message" topic'i üzerinde yayınlamaktadır.
 
-Örnek vermek gerekirse; size verdiğimiz scriptte verinin ilk hali "abcddef" olsun. "abcddef" bz2 algoritması vasıtasıyla compress olduğunda "b'BZh91AY&SY\xb8\x99\xdf\xec\x00\x00\x04\x91\x80@\x003"\xeeH\xa7\n\x12\x17\x13;\xfd\x80'" ifadesi benzeri bir forma geliyor. Bu veri de kodda hexadecimal forma dönüştürüldüğünde "425a6839314159265359b899dfec0000049180400033229f8021fe2ee48a70a1217133bfd80" benzeri bir forma geliyor. Ardından "/bz2_message" topiği üzerinden publishleniyor. Siz bu topiğe subscriber olup bu hexadecimal formdaki veriyi almalı ve işlemlerden geçirerek verinin ilk haline (verdiğimiz örnekte "abcddef") ulaşmalısınız. Ardından bu verinin en çok tekrar eden karakterini (örneğimizde 'd') ve bu karakterin ascii tablosundaki karşılığını (ascii d -> 100) bulup std_msgs Char ros mesaj tipinde publislemeniz istenmektedir. 
+
+Sırasıyla, 
+* Yayınlanan topic'i dinlemeniz,
+* Verinin sıkıştırılmamış hâlindeki en çok tekrar eden karakteri bulun.
+* Daha sonra bu karakterin ASCII tablosunda denk geldiği sayıyı [std_msgs/Char](http://docs.ros.org/en/noetic/api/std_msgs/html/msg/Char.html) mesaj türünde **"/solution"** isimli topic'e publishlemeniz beklenmektedir.
+
+### Örnek:
+
+Size verdiğimiz scriptte verinin sıkıştırılmamış hâli "abcdddef" olsun.
+
+"abcdddef" bz2 algoritması vasıtasıyla compress edildiğinde çıktı b"BZh91AY&SY\x13\x84\x11\xdd\x00\x00\x00\x01\x00?\x00 \x00!\x80\x0c\x03')\xdc]\xc9\x14\xe1B@N\x10Gt" oluyor. Bu verinin on altılı sayı sisteminde karşılığı ise "425a6839314159265359138411dd00000001003f00200021800c032729dc5dc914e142404e104774" oluyor. "/bz2_message" topic'i üzerinden en son elde ettiğimiz on altılı sayı sistemi formunda [std_msgs/String](http://docs.ros.org/en/noetic/api/std_msgs/html/msg/String.html) türünde yayınlanıyor.
+
+Sizden yapmanızı istediğimiz şey, "425a6839314159265359138411dd00000001003f00200021800c032729dc5dc914e142404e104774" ifadesini sıkıştırılmamış hâline (verdiğimiz örnekte "abcddef") getirmek. Ardından bu verinin en çok tekrar eden karakterini (örneğimizde 'd') ve bu karakterin ascii tablosundaki karşılığını (Örn: d karakteri için 100) bulup [std_msgs/Char](http://docs.ros.org/en/noetic/api/std_msgs/html/msg/Char.html) mesaj tipinde publislemeniz istenmektedir.
+
+## ASCII Table
+![ASCII Table](/media/ascii-table.png)
+
