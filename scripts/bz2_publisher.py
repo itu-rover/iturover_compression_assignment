@@ -26,6 +26,7 @@ class msg_class:
         self.compressed_msg = bz2.compress(self.msg)
         rospy.loginfo(self.compressed_msg)
         self.compressed_ascii = binascii.hexlify(self.compressed_msg).decode("ascii")
+        rospy.loginfo(self.compressed_ascii)
 
     def run(self):
         while not rospy.is_shutdown():
