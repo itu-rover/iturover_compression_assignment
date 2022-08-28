@@ -2,7 +2,7 @@
 
 # @author alpogant
 # Date: 2022-08-10
-# iturover team software subteam assignment part 1
+# iturover team software subteam assignment part 2
 
 import rospy
 from std_msgs.msg import String
@@ -17,7 +17,7 @@ class msg_class:
         self.run()
 
     def init(self):
-        self.msg = b'iturover software subteam'
+        self.msg = b'somewhere, something incredible is waiting to be known.'
         rospy.loginfo("BZ2 Compressed Message Publisher Node Started!")
         self.pub = rospy.Publisher("/bz2_message", String, queue_size=10)
         self.rate = rospy.Rate(5)
